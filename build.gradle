@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.4.2.RELEASE'
+		springBootVersion = '1.5.4.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -31,13 +31,22 @@ dependencies {
 	        'com.jgoodies:jgoodies-forms:1.9.0',
 	        'com.jgoodies:jgoodies-common:1.8.1',
 	        'com.jgoodies:looks:2.2.2',
-	        'com.hazelcast:hazelcast:3.7.3'
+	        'com.hazelcast:hazelcast:3.7.3',
 	
-	compile('org.springframework.boot:spring-boot-starter-web'){
-        exclude module: 'org.springframework.boot:spring-boot-starter-logging'
-    }
+	        'org.springframework.boot:spring-boot-starter-actuator',
+	        'org.springframework.boot:spring-boot-starter-web',
+	        
+	        'org.springframework.cloud:spring-cloud-starter-sleuth',
+	        'org.springframework.cloud:spring-cloud-starter-zipkin'
 		
 	compileOnly 'org.projectlombok:lombok'
 	
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.RELEASE"
+	}
+}
+
